@@ -1,6 +1,12 @@
-import { Characters } from "@/models/Characters.models";
-import DotsMoveLoader from "../components/icons/DotsMoveLoader";
 import Link from "next/link";
+import { Metadata } from "next";
+import { Characters } from "@/models/Characters.models";
+import DotsMoveLoader from "../../components/icons/DotsMoveLoader";
+
+export const metadata: Metadata = {
+  title: "Dragon Ball Characters",
+  description: "A list of Dragon Ball characters fetched from an external API.",
+};
 
 const getCharacters = async () => {
   const requestApi = await fetch(

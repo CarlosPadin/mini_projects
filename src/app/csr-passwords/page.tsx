@@ -1,9 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
-import Copy from "../components/icons/Copy";
-import SliderBar from "../components/passwords/SliderBar";
-import SwitchInput from "../components/passwords/SwitchInput";
-import Close from "../components/icons/Close";
+import Copy from "../../components/icons/Copy";
+import SliderBar from "../../components/passwords/SliderBar";
+import SwitchInput from "../../components/passwords/SwitchInput";
+import Close from "../../components/icons/Close";
 
 const PasswordsPage = () => {
   const [inputValue, setInputValue] = useState("");
