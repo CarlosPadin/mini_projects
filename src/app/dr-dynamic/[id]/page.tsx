@@ -1,14 +1,7 @@
-import { ISingleCharacter } from "@/models/Characte.models";
-
-const getSingleCharacter = async (id: string) => {
-  const requestApi = await fetch(
-    `https://dragonball-api.com/api/characters/${id}`
-  );
-
-  const data: ISingleCharacter = await requestApi.json();
-
-  return data;
-};
+import { notFound } from "next/navigation";
+import Header from "@/components/dragon-ball/Header";
+import { getSingleCharacter } from "@/services/getCharacters";
+import GoBack from "@/components/dragon-ball/GoBack";
 
 interface ISingleCharacterProps {
   params: Promise<{ id: string }>;
@@ -20,14 +13,16 @@ const SingleCharacterById = async ({
   const { id } = await params;
   const charachterData = await getSingleCharacter(id);
 
+  if (charachterData.id === undefined) {
+    notFound();
+  }
+
   return (
     <>
-      <header className="bg-slate-900 text-white p-5 text-center">
-        <h1>Dragon Ball Characters</h1>
-      </header>
+      <Header />
       <main className="max-w-4xl mx-auto py-5">
-        <section className="flex justify-between items-start">
-          <div className="w-1/3">
+        <section className="flex justify-between items-center">
+          <div className="w-1/3 flex justify-center">
             <img
               className="h-60"
               src={charachterData.image}
@@ -35,7 +30,7 @@ const SingleCharacterById = async ({
             />
           </div>
           <div className="w-2/3">
-            <h2 className="font-bold text-2xl">
+            <h2 className="font-bold text-3xl mb-5">
               {charachterData.name}
               <span className="font-normal text-gray-500 text-sm">
                 {" "}
@@ -45,7 +40,7 @@ const SingleCharacterById = async ({
             <p>{charachterData.description}</p>
           </div>
         </section>
-        <section>
+        <section className="flex justify-center">
           {charachterData.transformations.length == 0 ? (
             <p>Este personaje no tiene transformaciones</p>
           ) : (
@@ -68,6 +63,7 @@ const SingleCharacterById = async ({
             </div>
           )}
         </section>
+        <GoBack />
       </main>
     </>
   );

@@ -1,10 +1,10 @@
-export interface Characters {
-    items: Character[];
+export interface ICharacters {
+    items: ICharacter[];
     meta:  Meta;
     links: Links;
 }
 
-export interface Character {
+export interface ICharacter {
     id:          number;
     name:        string;
     ki:          string;
