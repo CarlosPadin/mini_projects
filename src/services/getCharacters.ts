@@ -13,7 +13,7 @@ export const getCharacters = async () => {
 
 export const getSingleCharacter = async (id: string) => {
   const requestApi = await fetch(
-    `${API_URL}${id}`, { cache: "force-cache" }
+    `${API_URL}/${id}`, { cache: "force-cache" }
   );
 
   const data: ISingleCharacter = await requestApi.json();
