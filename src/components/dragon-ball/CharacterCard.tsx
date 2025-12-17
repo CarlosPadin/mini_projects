@@ -17,7 +17,8 @@ const CharacterCard = ({
           alt={character.name}
           width={200}
           height={200}
-          className="h-60 object-contain mx-auto"
+          className="h-60 w-auto object-contain mx-auto"
+          priority
         />
         <h3 className="font-bold">{character.name}</h3>
       </Link>

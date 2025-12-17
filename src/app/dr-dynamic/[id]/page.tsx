@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Header from "@/components/dragon-ball/Header";
 import { getSingleCharacter } from "@/services/getCharacters";
@@ -5,6 +6,20 @@ import GoBack from "@/components/dragon-ball/GoBack";
 
 interface ISingleCharacterProps {
   params: Promise<{ id: string }>;
+}
+
+
+export async function generateMetadata({
+  params,
+}: ISingleCharacterProps): Promise<Metadata> {
+  // fetch data for meta
+  const { id } = await params;
+  const charachterData = await getSingleCharacter(id);
+
+  return {
+    title: `${charachterData.name}`,
+    description: `${charachterData.description}`,
+  };
 }
 
 const SingleCharacterById = async ({
@@ -70,3 +85,10 @@ const SingleCharacterById = async ({
 };
 
 export default SingleCharacterById;
+
+export async function generateStaticParams() {
+  // return params for static generation
+  return [{ id: "1" }, { id: "2" }, { id: "3" }];
+}
+
+
